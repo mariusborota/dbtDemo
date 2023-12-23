@@ -5,5 +5,5 @@ sources:
     database: raw
     schema: jaffle_shop
     tables:
-      - name: customer
+      - name: customers
       - name: orders
