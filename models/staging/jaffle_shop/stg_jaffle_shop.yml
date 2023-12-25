@@ -3,19 +3,26 @@ version: 2
 models:
 
   - name: stg_customers
+    description: stage customer data from our jaffel shop app.
     columns: 
       - name: customer_id
+        description: The primary key for customers.
         tests:
           - unique
           - not_null
+      - name: first_name
+        description: Fisrt name from customer name 
 
   - name: stg_orders
+    description: stage order data from our jaffel shop app
     columns:
       - name: order_id
+        description: The primary key for orders.
         tests:
           - unique
           - not_null
       - name: status
+        description: "{{ doc('order_status') }}"
         tests:
           - accepted_values:
               values:
@@ -24,6 +31,8 @@ models:
                 - returned
                 - return_pending
                 - placed
+      - name: order_date
+        description: "{{ doc('order_date') }}"
       - name: customer_id
         tests:
           - relationships:
