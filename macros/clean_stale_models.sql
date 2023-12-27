@@ -21,11 +21,11 @@
     {# parse the old objects and remove them #}
     {% for drop_query in drop_queries %}
         {{drop_query}}
-        {% if execute or not dry_run %}
+        {% if dry_run %}
+            {{ log(drop_query, info=True) }}
+        {% else %}
             {{ log('Dropping table/view with command: ' ~ drop_query, info=True) }}
             {% do run_query(drop_query) %}    
-        {% else %}
-            {{ log(drop_query, info=True) }}
         {% endif %}
     {% endfor %}
   
